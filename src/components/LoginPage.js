@@ -14,7 +14,18 @@ const teamMembers = [
     designation: "Lead Developer",
     role: "Full Stack"
   },
-  // ... other team members
+  {
+    name: "rishiraj",
+    photo: "https://via.placeholder.com/50",
+    designation: "Lead Developer",
+    role: "Full Stack"
+  },{
+    name: "rajkumar",
+    photo: "https://via.placeholder.com/50",
+    designation: "Lead Developer",
+    role: "Full Stack"
+  }
+  
 ];
 
 const LoginPage = () => {

@@ -346,7 +346,7 @@ app.post('/chat/prompt', async (req, res) => {
 
     // Send to n8n webhook
     const n8nResponse = await axios.post(
-      'http://localhost:5678/webhook/c2028c38-c50b-40c6-8f88-c34c14fef1a8',
+      'http://localhost:5678/webhook/n8n',
       {
         access_token,
         refresh_token,
@@ -363,15 +363,19 @@ app.post('/chat/prompt', async (req, res) => {
 
     // Handle n8n response
     let response;
-    if (n8nResponse.data.myField) {
-      response = n8nResponse.data.myField;
-    } else if (typeof n8nResponse.data === 'string') {
-      response = n8nResponse.data;
-    } else if (n8nResponse.data.message) {
-      response = n8nResponse.data.message;
-    } else {
-      response = 'Received your message!';
-    }
+
+if (n8nResponse.data.output) {
+  response = n8nResponse.data.output;
+} else if (n8nResponse.data.myField) {
+  response = n8nResponse.data.myField;
+} else if (typeof n8nResponse.data === 'string') {
+  response = n8nResponse.data;
+} else if (n8nResponse.data.message) {
+  response = n8nResponse.data.message;
+} else {
+  response = 'Received your message!';
+}
+
 
     res.json({ response });
 
